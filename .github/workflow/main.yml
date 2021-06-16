@@ -1,0 +1,16 @@
+name: Hello Program
+
+on:
+  push:
+    branches: [ dev ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: Ubuntu-self-hosted
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Run npm start
+        run: npm start
