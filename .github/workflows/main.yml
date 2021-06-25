@@ -4,6 +4,13 @@ on:
   push:
     branches: [ dev ]
   workflow_dispatch:
+    inputs:
+      logLevel:
+        description: 'Log level'     
+        required: true
+        default: 'warning'
+      tags:
+        description: 'Trigger Manually' 
 
 jobs:
   build:
