@@ -9,10 +9,10 @@ env:
 
 jobs:
   build:
-  - name: Build Node Project
     runs-on: [self-hosted, Linux, X64]
 
     steps:
+    - name: Build Node Project
     - uses: actions/checkout@v2
     - uses: actions/setup-node@v2
       with:
@@ -21,10 +21,10 @@ jobs:
 
 
   deploy:
-  - name: Deploy to Dev server
     runs-on: [self-hosted, Linux, X64]
     
     steps:
+    - name: Deploy to Dev server
     - uses: easingthemes/ssh-deploy@main
       env:
           ARGS: "-rltgoDzvO --delete"
