@@ -3,16 +3,33 @@ name: Hello Program
 on:
   push:
     branches: [ dev ]
+  workflow_dispatch:
+  
+env:
 
 jobs:
   build:
+  - name: Build Node Project
     runs-on: [self-hosted, Linux, X64]
 
     steps:
     - uses: actions/checkout@v2
     - uses: actions/setup-node@v2
       with:
-        node-version: '10'
+        node-version: '10.x'
     - run: npm install
-    - name: Run npm start
-      run: npm start
+
+
+  deploy:
+  - name: Deploy to Dev server
+    runs-on: [self-hosted, Linux, X64]
+    
+    steps:
+    - uses: easingthemes/ssh-deploy@main
+      env:
+          ARGS: "-rltgoDzvO --delete"
+          SOURCE: "/"
+          REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
+          REMOTE_USER: ${{ secrets.REMOTE_USER }}
+          TARGET: ${{ secrets.REMOTE_TARGET }}
+          EXCLUDE: "/dist/, /node_modules/"
