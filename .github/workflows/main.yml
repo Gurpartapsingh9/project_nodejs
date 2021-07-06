@@ -31,3 +31,11 @@ jobs:
           REMOTE_USER: ${{ secrets.REMOTE_USER }}
           TARGET: ${{ secrets.REMOTE_TARGET }}
           EXCLUDE: "/dist/, /node_modules/"
+    - name: Restart Service
+      uses: nerd4ever/ssh-action@master
+      with:
+        command: |
+          pm2 restart HelloWorld
+        host: ${{ secrets.DEV_SERVER }}
+        user: root
+        key: ${{ secrets.SSH_PRIKEY}}
