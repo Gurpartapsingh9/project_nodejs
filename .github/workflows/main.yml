@@ -17,7 +17,6 @@ jobs:
         node-version: '10.x'
     - run: npm install
 
-jobs:
   deploy:
     runs-on: [self-hosted, Linux, X64]
     
