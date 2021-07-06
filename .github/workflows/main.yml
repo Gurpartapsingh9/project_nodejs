@@ -24,10 +24,10 @@ jobs:
     steps:
     - name: Deploy to Dev server
     - uses: easingthemes/ssh-deploy@main
-      env:
+      with:
           ARGS: "-rltgoDzvO --delete"
           SOURCE: "/"
           REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
           REMOTE_USER: ${{ secrets.REMOTE_USER }}
-          TARGET: ${{ secrets.REMOTE_TARGET }}
+          TARGET: "/app/"
           EXCLUDE: "/dist/, /node_modules/"
